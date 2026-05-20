@@ -25,8 +25,8 @@ type InspectionData struct {
 	IsD3   bool   `json:"back"`
 	IsD4   bool   `json:"leg_left"`
 	IsD5   bool   `json:"leg_right"`
-	ParamA int    `json:"scratch_level"`
-	ParamB int    `json:"bruise_level"`
+	ParamA int    `json:"scratch"`
+	ParamB int    `json:"bruise"`
 }
 
 type Payload struct {
@@ -43,7 +43,7 @@ func main() {
 
 	for {
 		start := time.Now()
-		rows, err := db.Query("SELECT id, lot_code, duck_sequence, inspection_date, wing_left, wing_right, back, leg_left, leg_right , scratch_level, bruise_level FROM factory_duck_defects WHERE is_sync = false")
+		rows, err := db.Query("SELECT id, lot_code, duck_sequence, inspection_date, wing_left, wing_right, back, leg_left, leg_right , scratch, bruise FROM factory_duck_defects WHERE is_sync = false")
 		if err != nil {
 			log.Println("Query error:", err)
 			time.Sleep(10 * time.Second)
